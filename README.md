@@ -1,0 +1,2 @@
+# Optimizing-Rural-Waste-Management-High-Resolution-Remote-Sensing-and-GIS-for-Collection-and-Routing
+This dataset accompanies the paper "Optimizing Rural Waste Management: Leveraging High-Resolution Remote Sensing and GIS for Efficient Collection and Routing." It includes high-resolution remote sensing images and geospatial data, supporting rural waste management optimization through land cover classification, waste assessment, and route planning.
