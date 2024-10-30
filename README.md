@@ -70,12 +70,12 @@ To ensure accuracy and consistency in data labeling, this dataset follows a set 
 
 - **The dataset is shared via Baidu Netdisk:**
 
-       Link：https://pan.baidu.com/s/1rRB9EmtZdCBsSTrsfWh6yA?pwd=cdut 
-       Access code:cdut
-
+    Link：https://pan.baidu.com/s/1rRB9EmtZdCBsSTrsfWh6yA?pwd=cdut
+  
+    Access code:cdut
 - **The dataset is shared via Google Drive:**
 
-       Link:https://drive.google.com/drive/folders/18wN2XmZPFAia8orKet3-bi0yoP6rO7hp?usp=sharing
+    Link: https://drive.google.com/drive/folders/18wN2XmZPFAia8orKet3-bi0yoP6rO7hp?usp=sharing
 
   The dataset folder contains three subfolders: **"Complete Land Cover Labels"**, **"Farmland Boundary Labels"**, and **"VHR Images"**. Each of these subfolders includes thirty images, with corresponding filenames across all three folders. The images are named following the format"**htz_clip[*]**", where the placeholder " **[*]**" represents the specific index of each image. This consistent naming structure ensures that the images in each folder directly correspond to one another, facilitating easy comparison and usage for research purposes.
 
