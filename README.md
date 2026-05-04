@@ -1,97 +1,121 @@
-# Optimizing Rural Waste Management: Leveraging High-Resolution Remote Sensing and GIS for Efficient Collection and Routing —— Huangtu Datasets specification
+<div align="center">
 
-## 1. Introduction to Huangtu Dataset
+# Huangtu Dataset: VHR Remote Sensing for Rural Waste Management
 
-- **Study area**
-The study area is Huangtu Town (31°31ʹ–31°40ʹN, 104°26ʹ–104°33ʹE) in Sichuan Province, Southwest China, which covers an area of 84.54$`km^2`$ and has a population of approximately 37017 residents (Department of Rural Surveys, National Bureau of Statistics of the People’s Republic of China, 2020). Huangtu's geography is separated by hills and dam regions, and its boundary covers two watersheds of the Anchang and Caoxi Rivers, with a subtropical humid monsoon climate.
-- **Study the basis of regional selection**
-    - Huangtu is representative of many other towns in China with diverse geographical environments and low population density. From 2011 to 2019, the population density of the town remained at about 500 people/$`km^2`$ . This typical and complex feature provides a valuable opportunity to evaluate our decentralized waste collection and routing models and strategies.
-    - Our previous research on Huangtuzhen provided useful information for the optimization of this study, which can be used to add environmental constraints to the model framework.
-- **Thesis and author unit**
-    - The dataset has been thoroughly introduced and published in the article "Optimizing Rural Waste Management: Leveraging High-Resolution Remote Sensing and GIS for Efficient Collection and Routing"
+[![Paper](https://img.shields.io/badge/Paper-Published-blue)](#citation-section)
+[![Dataset](https://img.shields.io/badge/Dataset-Huangtu_1.0-green)](#download-section)
+[![Resolution](https://img.shields.io/badge/Resolution-1m-lightgrey)](#)
+[![Location](https://img.shields.io/badge/Location-Sichuan,_China-orange)](#)
 
-## 2. Dataset Overview
+*Optimizing Rural Waste Management: Leveraging High-Resolution Remote Sensing and GIS for Efficient Collection and Routing.*
 
-  The core content of this dataset is very high-resolution (VHR) remote sensing imagery, sourced from Google Earth Engine (GEE) in 2020. These VHR images include three optical bands: red, green, and blue, with an 18-level zoom. To ensure image quality, this dataset underwent a series of rigorous preprocessing operations, including image stitching, cropping, and bit-depth adjustment. Additionally, the images were reprojected to the Universal Transverse Mercator (UTM) projection and resampled to a 1-meter spatial resolution to enhance visual clarity and geospatial accuracy.
+[**📖 Read the Paper**](#citation-section) • [**⬇️ Download Dataset**](#download-section)
 
-  In addition, the dataset includes grayscale label images that were first manually annotated, with the results of a deep learning semantic segmentation model integrated in certain details. After the integration, the labels were manually checked and optimized again to ensure their accuracy and completeness. Different grayscale values in the label images represent the corresponding land cover types, facilitating model training and usage.
+</div>
 
-## 3. Dataset Composition
+---
 
-  This dataset includes **VHR sample block images** and **PNG format grayscale label images**. These grayscale images correspond to the 30 VHR image sample blocks, which cover the area of Huangtu Town with ultra-high resolution. Each sample block is sized at 1000 × 1000 pixels. The sample blocks are used to train image segmentation models and comprehensively reflect the rural landscape of Huangtu County, covering five typical environmental features: buildings, roads, water bodies, farmland, and forests.
+## 📸 Visual Teaser
+<p align="center">
+  <img src="assets/dataset_display.png" alt="Huangtu Dataset Visual Examples" width="80%">
+</p>
 
-  The PNG format grayscale label images contain polygonal coverage features representing six characteristics: background, buildings, roads, farmland, green spaces, and water bodies. In addition, the dataset separately includes grayscale label images consisting of linear features representing farmland boundaries. These linear features are used to accurately delineate the geographic boundaries of farmland. Thus, farmland areas are displayed not only as regions composed of polygonal coverage but also further clarified by boundary lines to specify their geographic limits.
+## 1. Introduction
 
-## 4. Land Cover Labels
+The **Huangtu Dataset** is explicitly designed to optimize decentralized waste collection and routing models in rural areas with complex geographical features and low population densities. 
 
-  The land cover labels are represented as PNG format grayscale images, used to annotate land cover types within the VHR sample block images. The grayscale images consist of two files: one named "Complete Land Cover Labels", which contains polygonal coverage features for six characteristics—background, buildings, roads, farmland, green spaces, and water bodies; and another named "Farmland Boundary Labels", which contains only the background and farmland boundary linear features, used to accurately delineate the geographic boundaries of farmland.
+The study area covers **Huangtu Town** (31°31ʹ–31°40ʹN, 104°26ʹ–104°33ʹE) in Sichuan Province, Southwest China, spanning $84.54 \text{ km}^2$ with a population of approximately 37,017 residents. The region features a typical, complex topography separated by hills and dam regions across the Anchang and Caoxi River watersheds. Its persistent low population density (~500 people/$\text{km}^2$) makes it highly representative of many rural towns in China, providing a valuable testing ground for evaluating environmental constraints in geospatial frameworks.
 
-  The labels were first manually annotated, then integrated with the results of a deep learning segmentation model in certain details, and finally manually checked and optimized again to ensure the accuracy and completeness of the label boundaries.
+This dataset is officially released alongside our research article: *"Optimizing Rural Waste Management: Leveraging High-Resolution Remote Sensing and GIS for Efficient Collection and Routing"*.
 
-————————————————————————————————————————————
+## 2. ✨ Highlights & Source Data
 
-├──Complete Land Cover Labels gray-scale value───│
+- 🛰️ **VHR Imagery:** Sourced from Google Earth Engine (GEE) in 2020 (18-level zoom, RGB bands).
+- ⚙️ **Rigorous Preprocessing:** Images underwent stitching, cropping, bit-depth adjustment, reprojection to UTM, and resampling to a precise **1-meter spatial resolution**.
+- 🧠 **High-Quality Annotations:** Labels were initially manually annotated, integrated with deep learning semantic segmentation predictions, and finally underwent a rigorous manual refinement process to ensure unparalleled accuracy and completeness.
 
-├──0 │\------------ │────── Background───────│
+## 3. Dataset Composition & Label Mapping
 
-├──1 │\------------ │───────Buildings────────│
+The dataset is composed of **30 VHR sample blocks**, each sized at **1000 × 1000 pixels**, comprehensively reflecting the rural landscape across five typical environmental features: buildings, roads, water bodies, farmland, and forests.
 
-├──2 │\------------ │────────Roads─────────│
+To facilitate diverse modeling tasks (e.g., semantic segmentation and boundary detection), the dataset provides two distinct sets of PNG format grayscale labels. The grayscale values map to land cover types as follows:
 
-├──3 │\------------ │────────Forests ────────│
+| Grayscale Value | 🎨 Complete Land Cover Labels | 🚧 Farmland Boundary Labels |
+| :---: | :--- | :--- |
+| `0` | Background | Background |
+| `1` | Buildings | Farmland Boundary |
+| `2` | Roads | - |
+| `3` | Forests (Green spaces) | - |
+| `4` | Farmland | - |
+| `5` | Water bodies | - |
 
-├──4 │\------------ │─────── Farmland ─────── │
+> **Note:** Farmland areas are not only represented as polygonal coverage (in Complete Labels) but are further clarified by linear boundary lines (in Boundary Labels) to specify exact geographic limits.
 
-├──5 │\------------ │────── Water bodies────── │
+## 4. 📐 Annotation Principles
 
-————————————————————————————————————————————
+To ensure consistency, our annotations strictly followed these tailored principles:
+1. 🌾 **Farmland:** Includes all boundaries intersecting with farmland areas. Outlines contours closely to visible edges; for connected farmland, only the outermost boundary is marked.
+2. 🌲 **Forest:** Outlines match visible contours; for contiguous forested areas, only the outer boundary is annotated.
+3. 🏠 **Buildings:** Based strictly on rooftop outlines (ignoring sidewalls/shadows). Connected but visually distinct structures are annotated separately.
+4. 🛣️ **Roads:** Annotated along actual edges (ignoring trees/shadows). If a segment is obscured for >20 pixels, it is divided into two separate segments.
+5. 💧 **Water Bodies:** Based on clear water edges. Distinct areas separated by barriers (e.g., sandbars, vegetation) are annotated independently.
 
-├── Farmland Boundary Labels gray-scale value───│
+---
 
-├──0 │\------------ │──────Background──────│
+<a id="download-section"></a>
+## 5. 📥 Download Links & Structure
 
-├──1 │\------------ │────── Farmland ───────│
+You can access the full dataset via the following cloud platforms:
 
-————————————————————————————————————————————
+- ☁️ **Baidu Netdisk:** [Click here to access](https://pan.baidu.com/s/1rRB9EmtZdCBsSTrsfWh6yA?pwd=cdut) *(Access Code: `cdut`)*
+- ☁️ **Google Drive:** [Click here to access](https://drive.google.com/drive/folders/18wN2XmZPFAia8orKet3-bi0yoP6rO7hp?usp=sharing)
 
-## 5. Land Cover Annotation Principles
+### Directory Structure
+The dataset is cleanly organized into three parallel subfolders. Each folder contains 30 corresponding images named in the format `htz_clip[*]`, ensuring perfect alignment for training:
 
-To ensure accuracy and consistency in data labeling, this dataset follows a set of precise annotation principles tailored to each land cover type:
+```text
+Huangtu_Dataset/
+├── VHR Images/                          # 30 RGB images (1000x1000)
+│   ├── htz_clip1.png
+│   ├── ...
+│   └── htz_clip30.png
+├── Complete Land Cover Labels/          # Semantic masks (Classes 0-5)
+│   ├── htz_clip1.png
+│   ├── ...
+│   └── htz_clip30.png
+└── Farmland Boundary Labels/            # Boundary masks (Classes 0-1)
+    ├── htz_clip1.png
+    ├── ...
+    └── htz_clip30.png
+```
 
-1. **Farmland**: Annotation includes all boundaries intersecting with farmland areas, outlining contours as closely as possible to visible edges; for connected farmland areas, only the outermost boundary is marked.
-2. **Forest**: Forest primarily include forests as the annotated areas, outlining forest boundaries to match visible contours; for contiguous forested areas, only the outer boundary is marked.
-3. **Buildings**: Building annotations are based on the rooftop outline, following the external contours without considering sidewalls or shadows; for connected buildings, each visually distinct structure is annotated separately.
-4. **Roads**: Roads are annotated along the actual road edges, ignoring trees or shadow obstructions; if a segment is obscured for more than 20 pixels, it is divided and annotated as two separate segments.
-5. **Water Bodies**: Water bodies are annotated based on clear water edges, ensuring accurate representation. Distinct water areas separated by barriers such as sandbars or vegetation are annotated as independent water bodies.
+<a id="citation-section"></a>
+## 6. 📝 Citation
 
-## 6. **Article citation format**
+If you find the Huangtu dataset or our research helpful in your work, please consider citing our paper:
 
-## 7. **Dataset Access and Usage**
+**Plain Text:**
+> Cheng, X., Yang, J., Han, Z., Shi, G., Pan, D., Meng, L., Zeng, Z., & Shen, Z. (2024). Optimizing rural waste management: Leveraging high-resolution remote sensing and GIS for efficient collection and routing. *International Journal of Applied Earth Observation and Geoinformation*, *135*, 104219. https://doi.org/10.1016/j.jag.2024.104219
 
-- **The dataset is shared via Baidu Netdisk:**
+**BibTeX:**
+```bibtex
+@article{CHENG2024104219,
+  title = {Optimizing rural waste management: Leveraging high-resolution remote sensing and GIS for efficient collection and routing},
+  author = {Xi Cheng and Jieyu Yang and Zhiyong Han and Guozhong Shi and Deng Pan and Likang Meng and Zhuojun Zeng and Zhanfeng Shen},
+  journal = {International Journal of Applied Earth Observation and Geoinformation},
+  volume = {135},
+  pages = {104219},
+  year = {2024},
+  doi = {https://doi.org/10.1016/j.jag.2024.104219}
+}
+```
 
-    Link：https://pan.baidu.com/s/1rRB9EmtZdCBsSTrsfWh6yA?pwd=cdut
-  
-    Access code:cdut
-- **The dataset is shared via Google Drive:**
+## 7. 🙏 Acknowledgements
 
-    Link: https://drive.google.com/drive/folders/18wN2XmZPFAia8orKet3-bi0yoP6rO7hp?usp=sharing
+We would like to express our sincere gratitude to the **Graduate Quality Engineering Construction Funding Program of Chengdu University of Technology (2024YAL016)** for supporting this project. 
 
-  The dataset folder contains three subfolders: **"Complete Land Cover Labels"**, **"Farmland Boundary Labels"**, and **"VHR Images"**. Each of these subfolders includes thirty images, with corresponding filenames across all three folders. The images are named following the format"**htz_clip[*]**", where the placeholder " **[*]**" represents the specific index of each image. This consistent naming structure ensures that the images in each folder directly correspond to one another, facilitating easy comparison and usage for research purposes.
+We also heavily acknowledge the efforts of all contributors across multiple institutions:
 
-## 8. **Acknowledgements**
-
-  We would like to express our sincere gratitude to Graduate Quality Engineering Construction Funding Program of Chengdu University of Technology (2024YAL016) for the support of this project.
-
-  We also acknowledge the efforts of all contributors, whose input and collaboration greatly contributed to the success of this research.
-
-**Chengdu University of Technology:**
-
-Xi Cheng, Zhiyong Han, Miaomiao Liu, Jieyu Yang, Zhuojun Zeng, Deng Pan
-
-**Aerospace Information Research Institute (Chinese Academy of Science) :**
-Zhanfeng Shen, Haoyu Wang
-
-**Key Laboratory of Development and Application of Rural Renewable Energ (Ministry of Agriculture, China)：**
-
-Guozhong Shi
+- **Chengdu University of Technology:** Xi Cheng, Zhiyong Han, Miaomiao Liu, Jieyu Yang, Zhuojun Zeng, Deng Pan
+- **Aerospace Information Research Institute (Chinese Academy of Sciences):** Zhanfeng Shen, Haoyu Wang
+- **Key Laboratory of Development and Application of Rural Renewable Energy (Ministry of Agriculture, China):** Guozhong Shi
